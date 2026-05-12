@@ -1,3 +1,24 @@
-# Godot 4+ specific ignores
-.godot/
-/android/
+# --- Godot 4 Specific ---
+.godot/                 # Folder metadata (wajib di-ignore, ini berat banget)
+*.translation           # File translasi binary
+*.import                # Metadata import (opsional, tapi biasanya di-ignore biar gak konflik)
+export_presets.cfg      # Biar settingan export lu (termasuk path SDK) gak bocor/konflik
+
+# --- Android Export Specific ---
+*.apk                   # Jangan push file APK lu ke repo, kegedean!
+*.idsig                 # Signature Android
+android/                # Folder build Android (kalau lu pake install Android Build Template)
+
+# --- Java/JDK Specific (Buat export tadi) ---
+.java/
+*.keystore              # PENTING: Jangan push keystore lu! Biar aman.
+
+# --- OS Specific ---
+.DS_Store               # Mac
+Thumbs.db               # Windows
+desktop.ini             # Windows
+*.tmp                   # File temporary
+
+# --- Editor/IDEs ---
+.vscode/                # Kalau lu pake VS Code
+.idea/                  # Kalau pake JetBrains/Android Studio

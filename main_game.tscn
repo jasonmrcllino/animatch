@@ -143,28 +143,32 @@ script = ExtResource("1_1oj5k")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_top = 50.0
+offset_right = 720.0
+offset_bottom = 1280.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.862745, 0.886275, 0.843137, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-self_modulate = Color(0.862745, 0.886275, 0.843137, 1)
+[node name="SafeWrapper" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_top = 50
 
-[node name="MenuButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SafeWrapper"]
+self_modulate = Color(0.862745, 0.886275, 0.843137, 1)
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="CanvasLayer/SafeWrapper/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_jgkyn")
 text = "Menu"
 
-[node name="TabBar" type="TabBar" parent="CanvasLayer/VBoxContainer"]
+[node name="TabBar" type="TabBar" parent="CanvasLayer/SafeWrapper/VBoxContainer"]
 self_modulate = Color(0.862745, 0.886275, 0.843137, 1)
 layout_mode = 2
 size_flags_vertical = 0
@@ -174,7 +178,7 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_2pltu")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_qpaub")
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/SafeWrapper/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.290196, 0.309804, 0.254902, 1)
@@ -183,26 +187,26 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_an1vu")
 text = "Score : 0"
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/SafeWrapper/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2pltu")
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/VBoxContainer/PanelContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/SafeWrapper/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="CardGrid" type="GridContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/CenterContainer"]
+[node name="CardGrid" type="GridContainer" parent="CanvasLayer/SafeWrapper/VBoxContainer/PanelContainer/CenterContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SafeWrapper/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Retry" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="Retry" type="Button" parent="CanvasLayer/SafeWrapper/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.960784, 0.960784, 0.941176, 1)
@@ -211,7 +215,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_umrn2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_borgi")
 text = "Retry"
 
-[node name="Settings" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+[node name="Settings" type="Button" parent="CanvasLayer/SafeWrapper/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.960784, 0.960784, 0.941176, 1)
@@ -230,10 +234,11 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.392157)
 
 [node name="Sidebar" type="PanelContainer" parent="CanvasLayer"]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(280, 0)
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = -450.0
+offset_top = 50.0
 offset_right = -50.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1oj5k")
@@ -271,10 +276,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -250.0
+offset_top = -350.0
+offset_right = 250.0
+offset_bottom = 350.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -334,6 +339,30 @@ theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_vn0ol")
 text = "Close"
+
+[node name="MatchNotifications" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 150.0
+offset_bottom = 210.0
+grow_horizontal = 2
+
+[node name="AnimalNameLabel" type="Label" parent="CanvasLayer/MatchNotifications"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -17.0
+offset_right = 0.5
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
 
 [node name="SfxFlip" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_yx7mw")

@@ -11,6 +11,7 @@ var total_pairs = 4
 var pairs_found = 0
 var current_difficulty_pairs = 4
 var current_peek_time = 3.0
+var match_label: Label
 
 @onready var music_slider = $CanvasLayer/PopupLayer/VBoxContainer/MusicSlider
 @onready var sfx_slider = $CanvasLayer/PopupLayer/VBoxContainer/SfxSlider
@@ -19,18 +20,19 @@ var current_peek_time = 3.0
 @onready var sfx_error = $SfxError
 @onready var music_player = $MusicPlayer
 @onready var sidebar = $CanvasLayer/Sidebar
-@onready var menu_button = $CanvasLayer/VBoxContainer/MenuButton
-@onready var tab_bar = $CanvasLayer/VBoxContainer/TabBar
-@onready var score_label = $CanvasLayer/VBoxContainer/ScoreLabel
-@onready var grid = $CanvasLayer/VBoxContainer/PanelContainer/CenterContainer/CardGrid
-@onready var btn_play = $CanvasLayer/VBoxContainer/HBoxContainer/Retry 
-@onready var btn_settings = $CanvasLayer/VBoxContainer/HBoxContainer/Settings
+@onready var menu_button = $CanvasLayer/SafeWrapper/VBoxContainer/MenuButton
+@onready var tab_bar = $CanvasLayer/SafeWrapper/VBoxContainer/TabBar
+@onready var score_label = $CanvasLayer/SafeWrapper/VBoxContainer/ScoreLabel
+@onready var grid = $CanvasLayer/SafeWrapper/VBoxContainer/PanelContainer/CenterContainer/CardGrid
+@onready var btn_play = $CanvasLayer/SafeWrapper/VBoxContainer/HBoxContainer/Retry 
+@onready var btn_settings = $CanvasLayer/SafeWrapper/VBoxContainer/HBoxContainer/Settings
 @onready var popup_layer = $CanvasLayer/PopupLayer
 @onready var popup_title = $CanvasLayer/PopupLayer/VBoxContainer/PopupTitle
 @onready var user_name_label = $CanvasLayer/PopupLayer/VBoxContainer/UserName
 @onready var overlay = $CanvasLayer/Overlay
 
 var card_scene = preload("res://card.tscn")
+
 
 var animal_images = [
 	"res://assets/elephant.png",
@@ -44,6 +46,20 @@ var animal_images = [
 	"res://assets/rabbit.png",
 	"res://assets/snake.png"
 ]
+
+# --- Tambahan Dictionary Nama Hewan ---
+var animal_names = {
+	0: "GAJAH",
+	1: "JERAPAH",
+	2: "KUDA NIL",
+	3: "MONYET",
+	4: "PANDA",
+	5: "BEO",
+	6: "PENGUIN",
+	7: "BABI",
+	8: "KELINCI",
+	9: "ULAR"
+}
 
 var flipped_cards = []
 
@@ -169,6 +185,10 @@ func check_match():
 			score += 100
 			pairs_found += 1
 			score_label.text = "Score: " + str(score) + " | Moves: " + str(moves)
+			
+			# --- TAMBAHAN: Munculin popup nama hewan ---
+			show_animal_match_popup(flipped_cards[0].card_id)
+			
 			flipped_cards[0].disabled = true
 			flipped_cards[1].disabled = true
 			if pairs_found == total_pairs:
@@ -240,9 +260,9 @@ func show_popup(type: String):
 	if type == "profile":
 		popup_title.set_text("USER PROFILE")
 		user_name_label.text = "1. Jason Marcellino Heldy (231011400197)\n" + \
-							   "2. Rashid Tegar Prihandoko (231011403391)\n" + \
-							   "3. Tata Astelia Cahyani (231011400206)\n\n" + \
-							   "Teknik Informatika - UNPAM"
+							"2. Rashid Tegar Prihandoko (231011403391)\n" + \
+							"3. Tata Astelia Cahyani (231011400206)\n\n" + \
+							"Teknik Informatika - UNPAM"
 							
 	elif type == "settings":
 		popup_title.set_text("GAME SETTINGS")
@@ -253,9 +273,9 @@ func show_popup(type: String):
 	elif type == "win":
 		popup_title.set_text("CONGRATULATIONS!")
 		user_name_label.text = "Ronde Selesai!\n\n" + \
-							   "Skor Lu: " + str(score) + "\n" + \
-							   "Rekor Tertinggi: " + str(high_score) + "\n" + \
-							   "Total Langkah: " + str(moves)
+							"Skor Lu: " + str(score) + "\n" + \
+							"Rekor Tertinggi: " + str(high_score) + "\n" + \
+							"Total Langkah: " + str(moves)
 	
 	# Animasi muncul
 	popup_layer.scale = Vector2(0.5, 0.5)
@@ -286,3 +306,26 @@ func _on_overlay_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if sidebar_open:
 			_toggle_sidebar() # Tutup sidebarnya
+
+func show_animal_match_popup(id):
+	# Kita pake PopupTitle buat nampilin "MATCH!" 
+	# dan User_Name_Label buat nampilin nama hewannya
+	popup_title.set_text("MATCH!")
+	user_name_label.text = "\nItu adalah:\n[ " + animal_names.get(id, "Hewan") + " ]"
+	
+	# Sembunyiin slider volume kalo lagi nampil ini
+	music_slider.hide()
+	sfx_slider.hide()
+	
+	popup_layer.show()
+	popup_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE # Biar gak ganggu klik kartu selanjutnya
+	
+	# Animasi muncul bentar terus ilang sendiri (1 detik)
+	popup_layer.scale = Vector2(0.5, 0.5)
+	var tween = create_tween()
+	tween.tween_property(popup_layer, "scale", Vector2(1.1, 1.1), 0.2).set_trans(Tween.TRANS_BACK)
+	
+	await get_tree().create_timer(1.0).timeout
+	
+	if popup_title.text == "MATCH!": # Biar gak nutup popup Profile/Settings kalo gak sengaja buka
+		popup_layer.hide()
