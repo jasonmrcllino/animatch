@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnsjgw01b0u0p"]
+
+[ext_resource type="Texture2D" uid="uid://8adsnkcp0lyd" path="res://assets/cardBack_blue3.png" id="1_kikvd"]
+[ext_resource type="Script" uid="uid://bd7t0r0ahlppt" path="res://card.gd" id="2_rjlel"]
+
+[node name="Card" type="TextureButton"]
+custom_minimum_size = Vector2(120, 120)
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_kikvd")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_rjlel")

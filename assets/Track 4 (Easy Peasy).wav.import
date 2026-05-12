@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bxddnha231sqw"
+path="res://.godot/imported/Track 4 (Easy Peasy).wav-759c86f2b780331b1c7a16ddb2a2e83a.sample"
+
+[deps]
+
+source_file="res://assets/Track 4 (Easy Peasy).wav"
+dest_files=["res://.godot/imported/Track 4 (Easy Peasy).wav-759c86f2b780331b1c7a16ddb2a2e83a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
