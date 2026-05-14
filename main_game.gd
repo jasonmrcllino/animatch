@@ -84,7 +84,9 @@ func _ready():
 	
 	btn_play.pressed.connect(func(): setup_game(current_difficulty_pairs, current_peek_time))
 	
-	$CanvasLayer/Sidebar/VBoxContainer/BtnExit.pressed.connect(func(): get_tree().quit())
+	$CanvasLayer/Sidebar/VBoxContainer/BtnExit.pressed.connect(func():
+		print("Keluar dari Game") 
+		get_tree().quit())
 	$CanvasLayer/Sidebar/VBoxContainer/BtnReset.pressed.connect(func():
 		_toggle_sidebar() 
 		setup_game(current_difficulty_pairs, current_peek_time)
@@ -114,6 +116,19 @@ func _ready():
 		sfx_error.volume_db = value
 	)
 	
+	# Bikin Label Notifikasi otomatis
+	match_label = Label.new()
+	$CanvasLayer.add_child(match_label) # Taruh di CanvasLayer biar paling depan
+	match_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	match_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	
+	# Setting tampilan (Sesuaikan posisi Y biar di bawah notch/tab bar)
+	match_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	match_label.position.y = 250 # Turunin dikit biar gak kena notch
+	match_label.add_theme_font_size_override("font_size", 40)
+	match_label.add_theme_color_override("font_color", Color.RED) # Biar kontras
+	match_label.hide() # Sembunyiin dulu
+
 	setup_game(4, 3.0)
 
 # --- 3. LOGIKA GAME ---
@@ -184,10 +199,8 @@ func check_match():
 			if sfx_enabled: sfx_match.play()
 			score += 100
 			pairs_found += 1
+			show_match_toast(flipped_cards[0].card_id)
 			score_label.text = "Score: " + str(score) + " | Moves: " + str(moves)
-			
-			# --- TAMBAHAN: Munculin popup nama hewan ---
-			show_animal_match_popup(flipped_cards[0].card_id)
 			
 			flipped_cards[0].disabled = true
 			flipped_cards[1].disabled = true
@@ -307,25 +320,15 @@ func _on_overlay_gui_input(event):
 		if sidebar_open:
 			_toggle_sidebar() # Tutup sidebarnya
 
-func show_animal_match_popup(id):
-	# Kita pake PopupTitle buat nampilin "MATCH!" 
-	# dan User_Name_Label buat nampilin nama hewannya
-	popup_title.set_text("MATCH!")
-	user_name_label.text = "\nItu adalah:\n[ " + animal_names.get(id, "Hewan") + " ]"
+
+func show_match_toast(id):
+	match_label.text = "MATCH: " + animal_names.get(id, "HEWAN")
+	match_label.show()
+	match_label.modulate.a = 1.0
 	
-	# Sembunyiin slider volume kalo lagi nampil ini
-	music_slider.hide()
-	sfx_slider.hide()
-	
-	popup_layer.show()
-	popup_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE # Biar gak ganggu klik kartu selanjutnya
-	
-	# Animasi muncul bentar terus ilang sendiri (1 detik)
-	popup_layer.scale = Vector2(0.5, 0.5)
+	# Animasi memudar (Fade Out)
 	var tween = create_tween()
-	tween.tween_property(popup_layer, "scale", Vector2(1.1, 1.1), 0.2).set_trans(Tween.TRANS_BACK)
-	
-	await get_tree().create_timer(1.0).timeout
-	
-	if popup_title.text == "MATCH!": # Biar gak nutup popup Profile/Settings kalo gak sengaja buka
-		popup_layer.hide()
+	tween.tween_interval(1.0) # Tampil 1 detik
+	tween.tween_property(match_label, "modulate:a", 0.0, 0.5) # Fade out 0.5 detik
+	await tween.finished
+	match_label.hide()

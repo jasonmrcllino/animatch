@@ -143,9 +143,9 @@ script = ExtResource("1_1oj5k")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_top = 50.0
-offset_right = 720.0
-offset_bottom = 1280.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.862745, 0.886275, 0.843137, 1)
@@ -231,15 +231,37 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 0.392157)
+
+[node name="MatchNotifications" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 150.0
+offset_bottom = 210.0
+grow_horizontal = 2
+
+[node name="AnimalNameLabel" type="Label" parent="CanvasLayer/MatchNotifications"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -17.0
+offset_right = 0.5
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
 
 [node name="Sidebar" type="PanelContainer" parent="CanvasLayer"]
 custom_minimum_size = Vector2(280, 0)
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = -450.0
-offset_top = 50.0
-offset_right = -50.0
+offset_left = -400.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1oj5k")
 
@@ -339,30 +361,6 @@ theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_vn0ol")
 text = "Close"
-
-[node name="MatchNotifications" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 150.0
-offset_bottom = 210.0
-grow_horizontal = 2
-
-[node name="AnimalNameLabel" type="Label" parent="CanvasLayer/MatchNotifications"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -17.0
-offset_right = 0.5
-offset_bottom = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
 
 [node name="SfxFlip" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_yx7mw")
