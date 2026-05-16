@@ -3,7 +3,7 @@
 *.translation           # File translasi binary
 *.import                # Metadata import (opsional, tapi biasanya di-ignore biar gak konflik)
 export_presets.cfg      # Biar settingan export lu (termasuk path SDK) gak bocor/konflik
-
+.tmp/                   # Folder temporary (kalau ada, biasanya buat cache build/export)
 # --- Android Export Specific ---
 *.apk                   # Jangan push file APK lu ke repo, kegedean!
 *.idsig                 # Signature Android
