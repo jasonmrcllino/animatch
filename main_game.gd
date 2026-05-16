@@ -234,13 +234,13 @@ func _toggle_sidebar():
 
 func _on_tab_selected(tab_index):
 	var pairs = 4
-	var p_time = 3.0
+	var p_time = 3.0 # Default awal 3 detik
 	if tab_index == 1:
 		pairs = 6
-		p_time = 2.0
+		p_time = 3.0 # Ubah dari 2.0 jadi 3.0 detik buat Medium
 	elif tab_index == 2:
 		pairs = 10
-		p_time = 1.0
+		p_time = 3.0 # Ubah dari 1.0 jadi 3.0 detik buat Hard
 	setup_game(pairs, p_time)
 
 func win_game():
