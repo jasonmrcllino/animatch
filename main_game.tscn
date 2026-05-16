@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://cql2yy1cwjbad"]
 
-[ext_resource type="Script" uid="uid://bddwywkw6ircd" path="res://main_game.gd" id="1_1oj5k"]
+[ext_resource type="Script" uid="uid://dj381ogqhe6st" path="res://main_game.gd" id="1_1oj5k"]
 [ext_resource type="AudioStream" uid="uid://bn3ntk1iitsvg" path="res://assets/card-place-1.ogg" id="2_yx7mw"]
 [ext_resource type="AudioStream" uid="uid://ddp1hcavp7cnv" path="res://assets/confirmation_002.ogg" id="3_ykeeq"]
 [ext_resource type="AudioStream" uid="uid://occdg27hc0ag" path="res://assets/error_001.ogg" id="4_6bm6p"]

@@ -1,13 +1,13 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1778901964
-card.gd::GDScript/GDScript::2664246501974163669::1778546709::0::1::::<>TextureButton<><>0<>0<><>::
-card.tscn::PackedScene/PackedScene::5723013497269504137::1778570486::0::1::::<><><>0<>0<><>::uid://8adsnkcp0lyd::::res://assets/cardBack_blue3.png<>uid://bd7t0r0ahlppt::::res://card.gd
-export_presets.cfg::TextFile::-1::1778740487::0::1::::<><><>0<>0<><>::
+::res://::1778918553
+card.gd::GDScript/GDScript::2664246501974163669::1778915060::0::1::::<>TextureButton<><>0<>0<><>::
+card.tscn::PackedScene::5723013497269504137::1778915904::0::1::::<><><>0<>0<><>::uid://8adsnkcp0lyd::::res://assets/cardBack_blue3.png<>uid://bd7t0r0ahlppt::::res://card.gd
+export_presets.cfg::TextFile::-1::1778915939::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::8816708947958256954::1778497115::1778497126::1::::<><><>0<>0<>4821807627705c34612f16e4b2fcd337<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-main_game.gd::GDScript/GDScript::2604560152767044475::1778569289::0::1::::<>Control<><>0<>0<><>::
-main_game.tscn::PackedScene::5920254539593733231::1778740589::0::1::::<><><>0<>0<><>::uid://bddwywkw6ircd::::res://main_game.gd<>uid://bn3ntk1iitsvg::::res://assets/card-place-1.ogg<>uid://ddp1hcavp7cnv::::res://assets/confirmation_002.ogg<>uid://occdg27hc0ag::::res://assets/error_001.ogg<>uid://bxddnha231sqw::::res://assets/Track 4 (Easy Peasy).wav<>uid://dnvwxyie7h8a::::res://assets/powerUp7.ogg
-::res://assets/::1778817567
-Animatch_Banner.png::CompressedTexture2D::7685689653213778464::1778817567::1778901966::1::::<><><>0<>0<>79707c5d93b0e73ef47ccdb7e19cd7b0<>res://.godot/imported/Animatch_Banner.png-3b6632087518900a9fc1b0068ce7dbd0.ctex::
+main_game.gd::GDScript::7850815057670332291::1778915902::0::1::::<>Control<><>0<>0<><>::
+main_game.tscn::PackedScene::5920254539593733231::1778916077::0::1::::<><><>0<>0<><>::uid://dj381ogqhe6st::::res://main_game.gd<>uid://bn3ntk1iitsvg::::res://assets/card-place-1.ogg<>uid://ddp1hcavp7cnv::::res://assets/confirmation_002.ogg<>uid://occdg27hc0ag::::res://assets/error_001.ogg<>uid://bxddnha231sqw::::res://assets/Track 4 (Easy Peasy).wav<>uid://dnvwxyie7h8a::::res://assets/powerUp7.ogg
+::res://assets/::1778901966
+Animatch_Banner.png::CompressedTexture2D/CompressedTexture2D::7685689653213778464::1778817567::1778901966::1::::<><><>0<>0<>79707c5d93b0e73ef47ccdb7e19cd7b0<>res://.godot/imported/Animatch_Banner.png-3b6632087518900a9fc1b0068ce7dbd0.ctex::
 Animatch_Icon.png::CompressedTexture2D/CompressedTexture2D::8841430121041226544::1778739872::1778739873::1::::<><><>0<>0<>23d24c5d5dee925cddc12038d4a1eea9<>res://.godot/imported/Animatch_Icon.png-4303ae86cd012aed84c21f90a35bc5af.ctex::
 card-place-1.ogg::AudioStreamOggVorbis/AudioStreamOggVorbis::3357502044864711472::1509147663::1778511346::1::::<><><>0<>0<>6b349ced512251c329685088e42b9aae<>res://.godot/imported/card-place-1.ogg-1bbe8a52d92349e4b7f40bc406a69103.oggvorbisstr::
 card-slide-1.ogg::AudioStreamOggVorbis/AudioStreamOggVorbis::6999745991396886099::1509147665::1778511346::1::::<><><>0<>0<>a439f64087d244994c6a98b7aedcb0e2<>res://.godot/imported/card-slide-1.ogg-763fffd3077ab21ebaec6582fe20e234.oggvorbisstr::
